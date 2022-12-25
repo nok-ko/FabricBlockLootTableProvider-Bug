@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "me.nokko.test.mixin.ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
