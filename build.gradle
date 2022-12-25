@@ -21,7 +21,7 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -73,5 +73,18 @@ publishing {
 		// Notice: This block does NOT have the same function as the block in the top level.
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
+	}
+}
+
+loom {
+	runs {
+		datagenClient {
+			inherit client
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=blockloottableprovider_bug"
+			runDir "build/datagen"
+		}
 	}
 }
